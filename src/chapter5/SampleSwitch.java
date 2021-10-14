@@ -1,4 +1,4 @@
- package chapter5;
+package chapter5;
 
 public class SampleSwitch {
     public static void main(String[] args) {
