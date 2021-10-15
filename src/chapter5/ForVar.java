@@ -7,7 +7,7 @@ public class ForVar {
         i = 0;
         for (; !done; ) {
             System.out.println("i is " + i);
-            if (i == 10){
+            if (i == 10) {
                 done = true;
             }
             i++;
