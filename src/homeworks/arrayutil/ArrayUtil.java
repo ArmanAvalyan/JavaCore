@@ -13,7 +13,7 @@ public class ArrayUtil {
 
         // Find the largest number of array
         int maxNumber = array[0];
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 1; i < array.length; i++) {
             if (array[i] > maxNumber) {
                 maxNumber = array[i];
             }
@@ -22,7 +22,7 @@ public class ArrayUtil {
 
         // Find the smallest number of array
         int minNumber = array[0];
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 1; i < array.length; i++) {
             if (array[i] < minNumber) {
                 minNumber = array[i];
             }
