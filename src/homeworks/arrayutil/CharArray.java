@@ -35,7 +35,7 @@ public class CharArray {
         // Interesting task
         char[] bolola3 = {'b', '9', 'b', 'c', 'o', 'l', 'a'};
         boolean req1 = false;
-        for (int i = 0; i < bolola3.length; i++) {
+        for (int i = 0; i < bolola3.length - 2; i++) {
             if (bolola3[i] == 'b' && bolola3[i + 2] == 'b') {
                 req1 = true;
                 break;
@@ -62,22 +62,5 @@ public class CharArray {
         }
         System.out.print("The new array: ");
         System.out.println(result);
-
-        System.out.println("-------------------------------------");
-
-        // Array sorting
-        int[] array = {1200, 36, 4, 147, 1, 78, -4, 7};
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length - i - 1; j++) {
-                if (array[j] > array[j + 1]) {
-                    int temp = array[j + 1];
-                    array[j + 1] = array[j];
-                    array[j] = temp;
-                }
-            }
-        }
-        for (int i : array) {
-            System.out.print(i + " ");
-        }
     }
 }
