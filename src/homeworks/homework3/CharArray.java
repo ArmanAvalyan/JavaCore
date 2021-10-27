@@ -1,4 +1,4 @@
-package homeworks.arrayutil;
+package homeworks.homework3;
 
 public class CharArray {
     public static void main(String[] args) {
