@@ -62,7 +62,7 @@ public class ArrayUtil {
         return arithmeticAverage;
     }
 
-     int[] arraySortingAsc(int[] array) {
+    int[] arraySortingAsc(int[] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length - i - 1; j++) {
                 if (array[j] > array[j + 1]) {
