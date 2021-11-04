@@ -32,5 +32,6 @@ public class ScannerExample {
             default:
                 System.out.println("There is no such operation");
         }
+
     }
 }
