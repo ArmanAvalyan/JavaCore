@@ -22,7 +22,7 @@ public class DynamicArray {
 
     public void printArray() {
         if (size == 0) {
-            System.out.println("Array is empty");
+            System.err.println("Array is empty");
         }
         for (int i = 0; i < size; i++) {
             System.out.print(array[i] + " ");
