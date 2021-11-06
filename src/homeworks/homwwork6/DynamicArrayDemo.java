@@ -10,6 +10,6 @@ public class DynamicArrayDemo {
         }
 
         dynamicArray.printArray();
-        System.out.print("\n" + dynamicArray.getByIndex(12));
+        System.out.print("\n" + dynamicArray.getByIndex(-56));
     }
 }

@@ -22,7 +22,7 @@ public class DynamicArray {
 
     public void printArray() {
         if (size == 0) {
-            System.err.println("Array is empty");
+            System.out.println("Array is empty");
         }
         for (int i = 0; i < size; i++) {
             System.out.print(array[i] + " ");
@@ -31,7 +31,7 @@ public class DynamicArray {
 
     public int getByIndex(int index) {
         if (index >= size || index < 0) {
-            System.out.print("\nInvalid index ");
+            System.err.print("\nInvalid index ");
             return -1;
         }
         return array[index];
