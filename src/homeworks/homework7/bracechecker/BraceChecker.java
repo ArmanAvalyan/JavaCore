@@ -11,7 +11,7 @@ public class BraceChecker {
     public void check() {
         Stack stack = new Stack();
         char openBrace;
-        int count = 0;
+        int braceCount = 0;
         for (int i = 0; i < text.length(); i++) {
             char brace = text.charAt(i);
             switch (brace) {
@@ -19,29 +19,29 @@ public class BraceChecker {
                 case '{':
                 case '[':
                     stack.push(brace);
-                    count++;
+                    braceCount++;
                     break;
                 case ')':
-                    count--;
+                    braceCount--;
                     if ((openBrace = stack.pop()) != '(') {
                         errorMessage(openBrace, brace, i);
                     }
                     break;
                 case '}':
-                    count--;
+                    braceCount--;
                     if ((openBrace = stack.pop()) != '{') {
                         errorMessage(openBrace, brace, i);
                     }
                     break;
                 case ']':
-                    count--;
+                    braceCount--;
                     if ((openBrace = stack.pop()) != '[') {
                         errorMessage(openBrace, brace, i);
                     }
                     break;
             }
         }
-        if (count != 0) {
+        if (braceCount != 0) {
             System.out.println("There is an unclosed brace");
         }
     }
