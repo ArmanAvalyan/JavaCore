@@ -23,26 +23,28 @@ public class BraceChecker {
                     break;
                 case ')':
                     braceCount--;
-                    if ((openBrace = stack.pop()) != '(') {
+                    if ((braceCount >= 0) && (openBrace = stack.pop()) != '(') {
                         errorMessage(openBrace, brace, i);
                     }
                     break;
                 case '}':
                     braceCount--;
-                    if ((openBrace = stack.pop()) != '{') {
+                    if ((braceCount >= 0) && (openBrace = stack.pop()) != '{') {
                         errorMessage(openBrace, brace, i);
                     }
                     break;
                 case ']':
                     braceCount--;
-                    if ((openBrace = stack.pop()) != '[') {
+                    if ((braceCount >= 0) && (openBrace = stack.pop()) != '[') {
                         errorMessage(openBrace, brace, i);
                     }
                     break;
             }
         }
-        if (braceCount != 0) {
+        if (braceCount > 0) {
             System.out.println("There is an unclosed brace");
+        } else if (braceCount < 0) {
+            System.out.println("There is an unopened brace");
         }
     }
 
