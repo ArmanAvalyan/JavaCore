@@ -5,11 +5,7 @@ public class DynamicArrayDemo {
 
         DynamicArray dynamicArray = new DynamicArray();
 
-        for (int i = 30; i > 0; i--) {
-            dynamicArray.add(i);
-        }
 
-        dynamicArray.printArray();
-        System.out.print("\n" + dynamicArray.getByIndex(-56));
+        System.out.println(dynamicArray.isExist(0));
     }
 }
