@@ -1,4 +1,4 @@
-package homeworks.homework7.bracechecker;
+package homeworks.bracechecker;
 
 public class BraceCheckerDemo {
 

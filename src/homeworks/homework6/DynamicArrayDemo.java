@@ -4,8 +4,7 @@ public class DynamicArrayDemo {
     public static void main(String[] args) {
 
         DynamicArray dynamicArray = new DynamicArray();
+        dynamicArray.add(14);
 
-
-        System.out.println(dynamicArray.isExist(0));
     }
 }

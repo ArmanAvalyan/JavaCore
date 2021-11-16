@@ -8,5 +8,6 @@ public class PassOb {
 
         System.out.println("ob1 == ob2: " + ob1.equalTo(ob2));
         System.out.println("ob1 == ob3: " + ob1.equalTo(ob3));
+
     }
 }

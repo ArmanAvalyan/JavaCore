@@ -8,6 +8,15 @@ public class Test {
         b = j;
     }
 
+    Test() {
+
+    }
+
+    void meth(int i, int j) {
+        i *= 2;
+        j /= 2;
+    }
+
     boolean equalTo(Test o) {
         if (o.a == a && o.b == b) {
             return true;
