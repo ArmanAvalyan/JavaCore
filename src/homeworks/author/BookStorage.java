@@ -31,10 +31,10 @@ public class BookStorage {
         if (size == 0) {
             System.out.println("The library is empty");
         }
-        for (int i = 0; i < size; i++) {
-            if (books[i].getTitle().contains(title)) {
-                System.out.println(books[i]);
-            }
+        if (getByTitle(title) != null) {
+            System.out.println(getByTitle(title));
+        } else {
+            System.out.println("No such book!");
         }
     }
 
@@ -54,5 +54,14 @@ public class BookStorage {
             }
         }
         System.out.println(count);
+    }
+
+    public Book getByTitle(String title) {
+        for (int i = 0; i < size; i++) {
+            if (books[i].getTitle().contains(title)) {
+                return books[i];
+            }
+        }
+        return null;
     }
 }
