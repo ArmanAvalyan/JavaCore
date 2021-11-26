@@ -66,7 +66,9 @@ public class BookStorage {
             if (!books[i].getAuthor().equals(author)) {
                 continue;
             }
-            if (size - 1 - i >= 0) System.arraycopy(books, i + 1, books, i, size - 1 - i);
+            for (int j = i; j < size - 1; j++) {
+                books[j] = books[j + 1];
+            }
             i--;
             size--;
         }
@@ -85,7 +87,9 @@ public class BookStorage {
             if (!books[i].getTitle().equals(title)) {
                 continue;
             }
-            if (size - 1 - i >= 0) System.arraycopy(books, i + 1, books, i, size - 1 - i);
+            for (int j = i; j < size - 1; j++) {
+                books[j] = books[j + 1];
+            }
             size--;
         }
     }
