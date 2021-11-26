@@ -1,5 +1,7 @@
 package homeworks.author;
 
+import java.util.Objects;
+
 public class Book {
 
     private String title;
@@ -26,6 +28,20 @@ public class Book {
                 ", Price: " + price +
                 ", Count: " + count +
                 ", Author: " + author;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Double.compare(book.price, price) == 0 && count == book.count && title.equals(book.title) &&
+                description.equals(book.description) && author.equals(book.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, description, price, count, author);
     }
 
     public String getTitle() {

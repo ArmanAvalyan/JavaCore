@@ -19,22 +19,18 @@ public class BookStorage {
     }
 
     public void print() {
-        if (size == 0) {
-            System.out.println("The library is empty");
-        }
-        for (int i = 0; i < size; i++) {
-            System.out.println(books[i]);
+        if (!isEmptyBook()) {
+            for (int i = 0; i < size; i++) {
+                System.out.println(books[i]);
+            }
         }
     }
 
     public void searchBookByTitle(String title) {
-        if (size == 0) {
-            System.out.println("The library is empty");
-        }
-        if (getByTitle(title) != null) {
-            System.out.println(getByTitle(title));
-        } else {
-            System.out.println("No such book!");
+        for (int i = 0; i < size; i++) {
+            if ((books[i]).getTitle().contains(title)) {
+                System.out.println(books[i]);
+            }
         }
     }
 
@@ -46,22 +42,52 @@ public class BookStorage {
         }
     }
 
-    public void countBooksByAuthor(String email) {
+    public int countBooksByAuthor(String email) {
         int count = 0;
         for (int i = 0; i < size; i++) {
             if (books[i].getAuthor().getEmail().contains(email)) {
-                count += +books[i].getCount();
+                count += books[i].getCount();
             }
         }
-        System.out.println(count);
+        return count;
     }
 
     public Book getByTitle(String title) {
         for (int i = 0; i < size; i++) {
-            if (books[i].getTitle().contains(title)) {
+            if (books[i].getTitle().equals(title)) {
                 return books[i];
             }
         }
         return null;
     }
+
+    public void deleteByAuthor(Author author) {
+        for (int i = 0; i < size; i++) {
+            if (!books[i].getAuthor().equals(author)) {
+                continue;
+            }
+            if (size - 1 - i >= 0) System.arraycopy(books, i + 1, books, i, size - 1 - i);
+            i--;
+            size--;
+        }
+    }
+
+    public boolean isEmptyBook() {
+        if (size == 0) {
+            System.out.println("\033[1;91m" + "The library is empty" + "\033[0m");
+            return true;
+        }
+        return false;
+    }
+
+    public void deleteBookByTitle(String title) {
+        for (int i = 0; i < size; i++) {
+            if (!books[i].getTitle().equals(title)) {
+                continue;
+            }
+            if (size - 1 - i >= 0) System.arraycopy(books, i + 1, books, i, size - 1 - i);
+            size--;
+        }
+    }
 }
+

@@ -1,5 +1,7 @@
 package homeworks.author;
 
+import java.util.Objects;
+
 public class Author {
 
     private String name;
@@ -26,6 +28,20 @@ public class Author {
                 ", E-mail: " + email +
                 ", Age: " + age +
                 ", Gender: " + gender;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Author author = (Author) o;
+        return age == author.age && name.equals(author.name) && surname.equals(author.surname) &&
+                email.equals(author.email) && gender.equals(author.gender);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, email, age, gender);
     }
 
     public String getName() {

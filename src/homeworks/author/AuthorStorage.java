@@ -19,30 +19,29 @@ public class AuthorStorage {
     }
 
     public void print() {
-        if (size == 0) {
-            System.out.println("Please add author");
+        if (isEmptyAuthor()) {
+            System.out.println("\033[1;91m" + "There are no authors at this time!" + "\033[0m");
+            return;
         }
         for (int i = 0; i < size; i++) {
             System.out.println(authors[i]);
         }
     }
 
+
     public void searchByName(String keyword) {
-        if (size == 0) {
-            System.out.println("Please add author");
-        }
         for (int i = 0; i < size; i++) {
             if (authors[i].getName().contains(keyword) ||
                     authors[i].getSurname().contains(keyword)) {
                 System.out.println(authors[i]);
+            } else {
+                System.out.println("\033[1;91m" + "No such author" + "\033[0m");
+                break;
             }
         }
     }
 
     public void searchByAge(int minAge, int maxAge) {
-        if (size == 0) {
-            System.out.println("Please add author");
-        }
         for (int i = 0; i < size; i++) {
             if (authors[i].getAge() >= minAge &&
                     authors[i].getAge() <= maxAge) {
@@ -58,5 +57,18 @@ public class AuthorStorage {
             }
         }
         return null;
+    }
+
+    public void deleteAuthor(Author author) {
+        for (int i = 0; i < size; i++) {
+            if (authors[i].equals(author)) {
+                authors[i] = authors[i + 1];
+            }
+        }
+        size--;
+    }
+
+    public boolean isEmptyAuthor() {
+        return size == 0;
     }
 }
