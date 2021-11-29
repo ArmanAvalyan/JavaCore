@@ -225,6 +225,6 @@ public class StudentLessonTest {
             System.out.println("\033[1;91m" + "There are no lessons at this time!" + "\033[0m");
             return true;
         }
-        return false;
+        return false
     }
 }
