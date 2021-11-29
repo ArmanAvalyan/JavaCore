@@ -4,7 +4,21 @@ public class DynamicArrayDemo {
     public static void main(String[] args) {
 
         DynamicArray dynamicArray = new DynamicArray();
-        dynamicArray.add(14);
+        dynamicArray.add(12);
+        dynamicArray.add(12);
+        dynamicArray.add(12);
+        dynamicArray.add(12);
+        dynamicArray.add(12);
+        dynamicArray.add(12);
+        dynamicArray.add(12);
+        dynamicArray.add(12);
+        dynamicArray.add(12);
+        dynamicArray.add(12);
+        dynamicArray.add(12);
+        dynamicArray.add(12);
+        dynamicArray.add(12);
+        dynamicArray.add(12);
+        dynamicArray.printArray();
 
     }
 }

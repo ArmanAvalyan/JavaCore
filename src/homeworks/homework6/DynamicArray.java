@@ -12,6 +12,16 @@ public class DynamicArray {
         array[size++] = value;
     }
 
+    private void extend() {
+
+        int[] newArray = new int[array.length + 10];
+        for (int i = 0; i < size; i++) {
+            newArray[i] = array[i];
+        }
+        int newLength = size;
+        array = newArray;
+    }
+
     public void add(int value, int index) {
         if (index >= size || index < 0) {
             System.err.print("\nInvalid index ");
@@ -53,13 +63,6 @@ public class DynamicArray {
         }
     }
 
-    private void extend() {
-        int[] newArray = new int[array.length + 10];
-        for (int i = 0; i < size; i++) {
-            newArray[i] = array[i];
-        }
-        array = newArray;
-    }
 
     public boolean isExist(int number) {
         for (int i = 0; i < size; i++) {
