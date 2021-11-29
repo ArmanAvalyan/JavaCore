@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class StudentLessonTest {
 
-    private static Scanner scanner = new Scanner(System.in);
-    private static StudentsStorage studentStorage = new StudentsStorage();
-    private static LessonsStorage lessonStorage = new LessonsStorage();
+    static Scanner scanner = new Scanner(System.in);
+    static StudentsStorage studentStorage = new StudentsStorage();
+    static LessonsStorage lessonStorage = new LessonsStorage();
 
     private static final String EXIT = "0";
     private static final String ADD_LESSON = "1";
@@ -16,7 +16,6 @@ public class StudentLessonTest {
     private static final String PRINT_LESSONS = "5";
     private static final String DELETE_LESSON_BY_NAME = "6";
     private static final String DELETE_STUDENT_BY_EMAIL = "7";
-
 
     public static void main(String[] args) {
         Lesson lesson1 = new Lesson("AR12", "JAVA", "1 year",
@@ -44,7 +43,6 @@ public class StudentLessonTest {
         Student student3 = new Student("Martiros", "Martirosyan", 28,
                 "martiros@gmail.com", "569", lesson3);
         studentStorage.add(student3);
-
 
         boolean isRun = true;
         while (isRun) {
