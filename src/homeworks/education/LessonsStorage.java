@@ -21,6 +21,18 @@ public class LessonsStorage {
         return null;
     }
 
+    public Lesson[] getLessons(String[] str) {
+        Lesson[] temp = new Lesson[str.length];
+        for (int i = 0; i < str.length; i++) {
+            if (getLesson(str[i]) == null) {
+                return null;
+            } else {
+                temp[i] = getLesson(str[i]);
+            }
+        }
+        return temp;
+    }
+
     public void printLessons() {
         for (int i = 0; i < size; i++) {
             System.out.println(lessons[i]);
@@ -37,7 +49,7 @@ public class LessonsStorage {
         return size == 0;
     }
 
-    public void deleteLessonByID(Lesson lesson) {
+    public void deleteLesson(Lesson lesson) {
         for (int i = 0; i < size; i++) {
             if (lessons[i].equals(lesson)) {
                 ArrayUtil.deleteByIndex(lessons, i, size);

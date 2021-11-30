@@ -1,5 +1,6 @@
 package homeworks.education;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Student {
@@ -9,15 +10,15 @@ public class Student {
     private int age;
     private String email;
     private String phone;
-    private Lesson lesson;
+    private Lesson[] lessons;
 
-    public Student(String name, String surname, int age, String email, String phone, Lesson lesson) {
+    public Student(String name, String surname, int age, String email, String phone, Lesson[] lessons) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
         this.phone = phone;
-        this.lesson = lesson;
+        this.lessons = lessons;
     }
 
     public Student() {
@@ -64,12 +65,12 @@ public class Student {
         this.phone = phone;
     }
 
-    public Lesson getLesson() {
-        return lesson;
+    public Lesson[] getLessons() {
+        return lessons;
     }
 
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
+    public void setLessons(Lesson[] lessons) {
+        this.lessons = lessons;
     }
 
     @Override
@@ -81,12 +82,14 @@ public class Student {
                 Objects.equals(surname, student.surname) &&
                 Objects.equals(email, student.email) &&
                 Objects.equals(phone, student.phone) &&
-                Objects.equals(lesson, student.lesson);
+                Arrays.equals(lessons, student.lessons);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, age, email, phone, lesson);
+        int result = Objects.hash(name, surname, age, email, phone);
+        result = 31 * result + Arrays.hashCode(lessons);
+        return result;
     }
 
     @Override
@@ -96,6 +99,7 @@ public class Student {
                 ", Age: " + age +
                 ", Email: " + email +
                 ", Phone: " + phone +
-                ", Lesson: " + lesson;
+                ",\nLessons: " + Arrays.toString(lessons) +
+                "\n-------";
     }
 }

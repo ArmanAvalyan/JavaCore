@@ -35,13 +35,13 @@ public class StudentLessonTest {
         lessonStorage.add(lesson5);
 
         Student student1 = new Student("Poxos", "Poxosyan", 25,
-                "poxos@gmail.com", "124569", lesson1);
+                "poxos@gmail.com", "124569", new Lesson[]{lesson1, lesson4, lesson3});
         studentStorage.add(student1);
         Student student2 = new Student("Petros", "Petrosyan", 15,
-                "petros@gmail.com", "123669", lesson4);
+                "petros@gmail.com", "123669", new Lesson[]{lesson4, lesson1});
         studentStorage.add(student2);
         Student student3 = new Student("Martiros", "Martirosyan", 28,
-                "martiros@gmail.com", "569", lesson3);
+                "martiros@gmail.com", "569", new Lesson[]{lesson1});
         studentStorage.add(student3);
 
         boolean isRun = true;
@@ -105,7 +105,7 @@ public class StudentLessonTest {
         String lessonID = scanner.nextLine();
         Lesson lesson = lessonStorage.getLesson(lessonID);
         if (lesson != null) {
-            lessonStorage.deleteLessonByID(lesson);
+            lessonStorage.deleteLesson(lesson);
             System.out.println("\033[1;92m" + "Thank you, lesson was deleted" + "\033[0m");
         } else {
             System.out.println("\033[1;91m" + "No such lesson has been found" + "\033[0m");
@@ -152,31 +152,32 @@ public class StudentLessonTest {
         if (lessonsIsEmpty()) {
             return;
         }
-        displayLessonsList();
-        System.out.print("Please input the lesson ID: ");
-        String lessonID = scanner.nextLine();
-        Lesson lesson = lessonStorage.getLesson(lessonID);
-        if (lesson != null) {
-            System.out.print("Please input the student email: ");
-            String email = scanner.nextLine();
-            if (studentStorage.getStudent(email) == null) {
+        System.out.print("Please input the student email: ");
+        String email = scanner.nextLine();
+        if (studentStorage.getStudent(email) == null) {
+            displayLessonsList();
+            System.out.print("Please input the lesson/lessons ID (ID1, ID2, ...): ");
+            String lessonsDataStr = scanner.nextLine();
+            String[] lessonsData = lessonsDataStr.split(", ");
+            Lesson[] lessons = lessonStorage.getLessons(lessonsData);
+            if (lessons != null) {
                 System.out.println("Please input student Name, Surname, Age, Phone");
                 String studentDataStr = scanner.nextLine();
                 String[] studentData = studentDataStr.split(", ");
                 if (studentData.length == 4) {
                     int age = Integer.parseInt(studentData[2]);
                     Student student = new Student(studentData[0], studentData[1],
-                            age, email, studentData[3], lesson);
+                            age, email, studentData[3], lessons);
                     studentStorage.add(student);
                     System.out.println("\033[0;93m" + "Thank you student was added" + "\033[0m");
                 } else {
                     System.out.println("\033[1;91m" + "Invalid data" + "\033[0m");
                 }
             } else {
-                System.out.println("\033[1;91m" + "Student with this email already exists" + "\033[0m");
+                System.out.println("\033[1;91m" + "No such lesson/lessons has been found" + "\033[0m");
             }
         } else {
-            System.out.println("\033[1;91m" + "No such lesson has been found" + "\033[0m");
+            System.out.println("\033[1;91m" + "Student with this email already exists" + "\033[0m");
         }
     }
 
@@ -204,9 +205,7 @@ public class StudentLessonTest {
         if (studentsIsEmpty()) {
             return;
         }
-        System.out.println("----------");
         studentStorage.printStudents();
-        System.out.println("----------");
     }
 
     private static boolean studentsIsEmpty() {
