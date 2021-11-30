@@ -89,7 +89,7 @@ public class StudentLessonTest {
         String email = scanner.nextLine();
         Student student = studentStorage.getStudent(email);
         if (student != null) {
-            studentStorage.deleteStudentByEmail(student);
+            studentStorage.deleteStudent(student);
             System.out.println("\033[1;92m" + "Thank you, student was deleted" + "\033[0m");
         } else {
             System.out.println("\033[1;91m" + "There is no student with that email address" + "\033[1;91m");
@@ -159,22 +159,26 @@ public class StudentLessonTest {
             System.out.print("Please input the lesson/lessons ID (ID1, ID2, ...): ");
             String lessonsDataStr = scanner.nextLine();
             String[] lessonsData = lessonsDataStr.split(", ");
-            Lesson[] lessons = lessonStorage.getLessons(lessonsData);
-            if (lessons != null) {
-                System.out.println("Please input student Name, Surname, Age, Phone");
-                String studentDataStr = scanner.nextLine();
-                String[] studentData = studentDataStr.split(", ");
-                if (studentData.length == 4) {
-                    int age = Integer.parseInt(studentData[2]);
-                    Student student = new Student(studentData[0], studentData[1],
-                            age, email, studentData[3], lessons);
-                    studentStorage.add(student);
-                    System.out.println("\033[0;93m" + "Thank you student was added" + "\033[0m");
+            Lesson[] lessons = new Lesson[lessonsData.length];
+            for (int i = 0; i < lessons.length; i++) {
+                if (lessonStorage.getLesson(lessonsData[i]) != null) {
+                    lessons[i] = lessonStorage.getLesson(lessonsData[i]);
                 } else {
-                    System.out.println("\033[1;91m" + "Invalid data" + "\033[0m");
+                    System.out.println("\033[1;91m" + "No such lesson/lessons has been found" + "\033[0m");
+                    return;
                 }
+            }
+            System.out.println("Please input student Name, Surname, Age, Phone");
+            String studentDataStr = scanner.nextLine();
+            String[] studentData = studentDataStr.split(", ");
+            if (studentData.length == 4) {
+                int age = Integer.parseInt(studentData[2]);
+                Student student = new Student(studentData[0], studentData[1],
+                        age, email, studentData[3], lessons);
+                studentStorage.add(student);
+                System.out.println("\033[0;93m" + "Thank you student was added" + "\033[0m");
             } else {
-                System.out.println("\033[1;91m" + "No such lesson/lessons has been found" + "\033[0m");
+                System.out.println("\033[1;91m" + "Invalid data" + "\033[0m");
             }
         } else {
             System.out.println("\033[1;91m" + "Student with this email already exists" + "\033[0m");

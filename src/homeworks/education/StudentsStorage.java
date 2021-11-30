@@ -48,7 +48,7 @@ public class StudentsStorage {
         }
     }
 
-    public void deleteStudentByEmail(Student student) {
+    public void deleteStudent(Student student) {
         for (int i = 0; i < size; i++) {
             if (students[i].equals(student)) {
                 ArrayUtil.deleteByIndex(students, i, size);
