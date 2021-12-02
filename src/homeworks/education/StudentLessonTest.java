@@ -10,19 +10,46 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
 
-public class StudentLessonTest implements StudentsLessonsCommands, Clas {
+import static homeworks.education.util.DateUtil.stringToDate;
+
+public class StudentLessonTest implements StudentsLessonsCommands{
 
         static Scanner scanner = new Scanner(System.in);
         static StudentsStorage studentStorage = new StudentsStorage();
         static LessonsStorage lessonStorage = new LessonsStorage();
 
         public static void main(String[] args) throws ParseException {
+            Lesson lesson1 = new Lesson("AR12", "JAVA", "1 year",
+                    "John", 15);
+            Lesson lesson2 = new Lesson("AR36", "PHP", "2 year",
+                    "Smith", 55);
+
+            Lesson lesson3 = new Lesson("AR47", "JS", "3 year",
+                    "Mike", 19);
+            Lesson lesson4 = new Lesson("AR236", "HTML", "4 year",
+                    "Bob", 75);
+            Lesson lesson5 = new Lesson("AR278", "JS", "5 month",
+                    "Mike", 13);
+
+            Student student1 = new Student("Poxos", "Poxosyan", 25,
+                    "poxos@gmail.com", "124569", stringToDate("15/03/2019"),
+                    new Lesson[]{lesson1, lesson4, lesson3});
+
+            Student student2 = new Student("Petros", "Petrosyan", 15,
+                    "petros@gmail.com", "123669", stringToDate("02/12/2020"),
+                    new Lesson[]{lesson4, lesson1});
+            Student student3 = new Student("Martiros", "Martirosyan", 28,
+                    "martiros@gmail.com", "569", stringToDate("01/10/2021"),
+                    new Lesson[]{lesson1});
 
             lessonStorage.add(lesson1);
             lessonStorage.add(lesson2);
             lessonStorage.add(lesson3);
             lessonStorage.add(lesson4);
             lessonStorage.add(lesson5);
+            studentStorage.add(student1);
+            studentStorage.add(student2);
+            studentStorage.add(student3);
 
             boolean isRun = true;
             while (isRun) {
@@ -151,7 +178,7 @@ public class StudentLessonTest implements StudentsLessonsCommands, Clas {
                 System.out.println("Please input student name, surname, age, phone, registered date[01/01/1900]");
                 String studentDataStr = scanner.nextLine();
                 String[] studentData = studentDataStr.split(", ");
-                int age = Integer.parseInt(studentData[3]);
+                int age = Integer.parseInt(studentData[2]);
                 Date registeredDate = DateUtil.stringToDate(studentData[4]);
                 if (studentData.length == 5) {
                     Student student = new Student(studentData[0], studentData[1],

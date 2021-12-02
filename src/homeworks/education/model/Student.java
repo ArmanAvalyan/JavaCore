@@ -21,8 +21,8 @@ public class Student {
                    Lesson[] lessons) {
         this.name = name;
         this.surname = surname;
-        this.age = age;
         this.email = email;
+        this.age = age;
         this.phone = phone;
         this.registeredDate = registeredDate;
         this.lessons = lessons;
@@ -110,11 +110,11 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Name: " + name +
+        return "Name: " + "\033[0m" + name +
                 ", Surname: " + surname +
                 ", Age: " + age +
-                ", Email: " + email +
                 ", Phone: " + phone +
+                ", Email: " + email +
                 ", Registered date: " + DateUtil.dateToString(registeredDate) +
                 ArrayUtil.arrayToString(lessons) +
                 "\n-------";
