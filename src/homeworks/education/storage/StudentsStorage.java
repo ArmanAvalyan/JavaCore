@@ -28,6 +28,10 @@ public class StudentsStorage {
     public void printStudents() {
         for (int i = 0; i < size; i++) {
             System.out.println(students[i]);
+            if (i == size - 1) {
+                return;
+            }
+            System.out.println("-------------------");
         }
     }
 

@@ -116,7 +116,6 @@ public class Student {
                 ", Phone: " + phone +
                 ", Email: " + email +
                 ", Registered date: " + DateUtil.dateToString(registeredDate) +
-                ArrayUtil.arrayToString(lessons) +
-                "\n-------";
+                ArrayUtil.arrayToString(lessons);
     }
 }
