@@ -1,12 +1,5 @@
 package homeworks.education;
 
-import homeworks.education.model.Lesson;
-import homeworks.education.model.Student;
-import homeworks.education.storage.LessonsStorage;
-import homeworks.education.storage.StudentsStorage;
-
-import java.util.Scanner;
-
 public interface StudentsLessonsCommands {
 
     String EXIT = "0";
