@@ -10,7 +10,6 @@ public class Lesson {
     private String lecturerName;
     private int price;
 
-
     public Lesson(String lessonID, String name, String duration, String lecturerName, int price) {
         this.lessonID = lessonID;
         this.name = name;
@@ -20,7 +19,6 @@ public class Lesson {
     }
 
     public Lesson() {
-
     }
 
     public String getLessonID() {

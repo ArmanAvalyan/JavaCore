@@ -10,8 +10,6 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
 
-import static homeworks.education.util.DateUtil.stringToDate;
-
 public class StudentLessonTest implements StudentsLessonsCommands {
 
     static Scanner scanner = new Scanner(System.in);
@@ -32,15 +30,15 @@ public class StudentLessonTest implements StudentsLessonsCommands {
                 "Mike", 13);
 
         Student student1 = new Student("Poxos", "Poxosyan", 25,
-                "poxos@gmail.com", "124569", stringToDate("15/03/2019"),
+                "poxos@gmail.com", "124569", DateUtil.stringToDate("15/03/2019"),
                 new Lesson[]{lesson1, lesson4});
 
         Student student2 = new Student("Petros", "Petrosyan", 15,
-                "petros@gmail.com", "123669", stringToDate("02/12/2020"),
+                "petros@gmail.com", "123669", DateUtil.stringToDate("02/12/2020"),
                 new Lesson[]{lesson4, lesson1});
-//        Student student3 = new Student("Martiros", "Martirosyan", 28,
-//                "martiros@gmail.com", "569", stringToDate("01/10/2021"),
-//                new Lesson[]{lesson1});
+        Student student3 = new Student("Martiros", "Martirosyan", 28,
+                "martiros@gmail.com", "569", DateUtil.stringToDate("01/10/2021"),
+                new Lesson[]{lesson1});
 
         lessonStorage.add(lesson1);
         lessonStorage.add(lesson2);
@@ -49,7 +47,7 @@ public class StudentLessonTest implements StudentsLessonsCommands {
         lessonStorage.add(lesson5);
         studentStorage.add(student1);
         studentStorage.add(student2);
-//        studentStorage.add(student3);
+        studentStorage.add(student3);
 
         boolean isRun = true;
         while (isRun) {
