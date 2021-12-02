@@ -1,6 +1,9 @@
-package homeworks.education;
+package homeworks.education.model;
+
+import homeworks.education.util.DateUtil;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Objects;
 
 public class Student {
@@ -10,14 +13,17 @@ public class Student {
     private int age;
     private String email;
     private String phone;
+    private Date registeredDate;
     private Lesson[] lessons;
 
-    public Student(String name, String surname, int age, String email, String phone, Lesson[] lessons) {
+    public Student(String name, String surname, int age, String email, String phone, Date registeredDate,
+                   Lesson[] lessons) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
         this.phone = phone;
+        this.registeredDate = registeredDate;
         this.lessons = lessons;
     }
 
@@ -65,6 +71,14 @@ public class Student {
         this.phone = phone;
     }
 
+    public Date getRegisteredDate() {
+        return registeredDate;
+    }
+
+    public void setRegisteredDate(Date registeredDate) {
+        this.registeredDate = registeredDate;
+    }
+
     public Lesson[] getLessons() {
         return lessons;
     }
@@ -82,12 +96,13 @@ public class Student {
                 Objects.equals(surname, student.surname) &&
                 Objects.equals(email, student.email) &&
                 Objects.equals(phone, student.phone) &&
+                Objects.equals(registeredDate, student.registeredDate) &&
                 Arrays.equals(lessons, student.lessons);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(name, surname, age, email, phone);
+        int result = Objects.hash(name, surname, age, email, phone, registeredDate);
         result = 31 * result + Arrays.hashCode(lessons);
         return result;
     }
@@ -99,6 +114,7 @@ public class Student {
                 ", Age: " + age +
                 ", Email: " + email +
                 ", Phone: " + phone +
+                ", Registered date: " + DateUtil.dateToString(registeredDate) +
                 ",\nLessons: " + Arrays.toString(lessons) +
                 "\n-------";
     }

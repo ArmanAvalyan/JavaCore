@@ -1,4 +1,7 @@
-package homeworks.education;
+package homeworks.education.storage;
+
+import homeworks.education.model.Lesson;
+import homeworks.education.util.ArrayUtil;
 
 public class LessonsStorage {
 
