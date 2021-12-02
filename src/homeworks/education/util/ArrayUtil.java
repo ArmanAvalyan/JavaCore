@@ -7,4 +7,12 @@ public class ArrayUtil {
             array[i] = array[i + 1];
         }
     }
+
+    public static String arrayToString(Object[] array) {
+        StringBuilder tmp = new StringBuilder();
+        for (Object o : array) {
+            tmp.append('\n').append(o);
+        }
+        return tmp.toString();
+    }
 }

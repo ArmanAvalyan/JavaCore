@@ -10,38 +10,19 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
 
-public class StudentLessonTest implements StudentsLessonsCommands {
+public class StudentLessonTest implements StudentsLessonsCommands, Clas {
 
         static Scanner scanner = new Scanner(System.in);
         static StudentsStorage studentStorage = new StudentsStorage();
         static LessonsStorage lessonStorage = new LessonsStorage();
 
         public static void main(String[] args) throws ParseException {
-            Lesson lesson1 = new Lesson("AR12", "JAVA", "1 year",
-                    "John", 15);
-            lessonStorage.add(lesson1);
-            Lesson lesson2 = new Lesson("AR36", "PHP", "2 year",
-                    "Smith", 55);
-            lessonStorage.add(lesson2);
-            Lesson lesson3 = new Lesson("AR47", "JS", "3 year",
-                    "Mike", 19);
-            lessonStorage.add(lesson3);
-            Lesson lesson4 = new Lesson("AR236", "HTML", "4 year",
-                    "Bob", 75);
-            lessonStorage.add(lesson4);
-            Lesson lesson5 = new Lesson("AR278", "JS", "5 month",
-                    "Mike", 13);
-            lessonStorage.add(lesson5);
 
-            Student student1 = new Student("Poxos", "Poxosyan", 25,
-                    "poxos@gmail.com", "124569", new Date(), new Lesson[]{lesson1, lesson4, lesson3});
-            studentStorage.add(student1);
-            Student student2 = new Student("Petros", "Petrosyan", 15,
-                    "petros@gmail.com", "123669",new Date(), new Lesson[]{lesson4, lesson1});
-            studentStorage.add(student2);
-            Student student3 = new Student("Martiros", "Martirosyan", 28,
-                    "martiros@gmail.com", "569", new Date(), new Lesson[]{lesson1});
-            studentStorage.add(student3);
+            lessonStorage.add(lesson1);
+            lessonStorage.add(lesson2);
+            lessonStorage.add(lesson3);
+            lessonStorage.add(lesson4);
+            lessonStorage.add(lesson5);
 
             boolean isRun = true;
             while (isRun) {

@@ -1,5 +1,6 @@
 package homeworks.education.model;
 
+import homeworks.education.util.ArrayUtil;
 import homeworks.education.util.DateUtil;
 
 import java.util.Arrays;
@@ -115,7 +116,7 @@ public class Student {
                 ", Email: " + email +
                 ", Phone: " + phone +
                 ", Registered date: " + DateUtil.dateToString(registeredDate) +
-                ",\nLessons: " + Arrays.toString(lessons) +
+                ArrayUtil.arrayToString(lessons) +
                 "\n-------";
     }
 }
