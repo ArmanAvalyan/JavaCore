@@ -10,7 +10,6 @@ public class ArrayUtil {
 
     public static String arrayToString(Object[] array) {
         StringBuilder tmp = new StringBuilder();
-        System.out.println("-------------------");
         for (Object o : array) {
             tmp.append('\n').append(o);
         }

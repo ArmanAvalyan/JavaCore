@@ -33,14 +33,14 @@ public class StudentLessonTest implements StudentsLessonsCommands {
 
         Student student1 = new Student("Poxos", "Poxosyan", 25,
                 "poxos@gmail.com", "124569", stringToDate("15/03/2019"),
-                new Lesson[]{lesson1, lesson4, lesson3});
+                new Lesson[]{lesson1, lesson4});
 
         Student student2 = new Student("Petros", "Petrosyan", 15,
                 "petros@gmail.com", "123669", stringToDate("02/12/2020"),
                 new Lesson[]{lesson4, lesson1});
-        Student student3 = new Student("Martiros", "Martirosyan", 28,
-                "martiros@gmail.com", "569", stringToDate("01/10/2021"),
-                new Lesson[]{lesson1});
+//        Student student3 = new Student("Martiros", "Martirosyan", 28,
+//                "martiros@gmail.com", "569", stringToDate("01/10/2021"),
+//                new Lesson[]{lesson1});
 
         lessonStorage.add(lesson1);
         lessonStorage.add(lesson2);
@@ -49,7 +49,7 @@ public class StudentLessonTest implements StudentsLessonsCommands {
         lessonStorage.add(lesson5);
         studentStorage.add(student1);
         studentStorage.add(student2);
-        studentStorage.add(student3);
+//        studentStorage.add(student3);
 
         boolean isRun = true;
         while (isRun) {
@@ -197,7 +197,9 @@ public class StudentLessonTest implements StudentsLessonsCommands {
         if (lessonsIsEmpty()) {
             return;
         }
+        System.out.println("******************");
         lessonStorage.printLessons();
+        System.out.println("******************");
     }
 
     private static void displayStudentsList() {

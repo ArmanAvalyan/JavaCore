@@ -31,7 +31,6 @@ public class StudentsStorage {
             if (i == size - 1) {
                 return;
             }
-            System.out.println("-------------------");
         }
     }
 
@@ -46,13 +45,18 @@ public class StudentsStorage {
     }
 
     public void printStudentsByLesson(Lesson lesson) {
+        boolean isParticipant = false;
         for (int i = 0; i < size; i++) {
             Lesson[] temp = students[i].getLessons();
             for (Lesson value : temp) {
                 if (value.equals(lesson)) {
                     System.out.println(students[i]);
+                    isParticipant = true;
                 }
             }
+        }
+        if (!isParticipant) {
+            System.out.println("\033[1;91m" + "There is no student participating in that lesson" + "\033[0m");
         }
     }
 

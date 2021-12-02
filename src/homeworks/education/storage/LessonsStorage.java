@@ -25,11 +25,9 @@ public class LessonsStorage {
     }
 
     public void printLessons() {
-        System.out.println("-------------------");
         for (int i = 0; i < size; i++) {
             System.out.println(lessons[i]);
         }
-        System.out.println("-------------------");
     }
 
     private void extend() {

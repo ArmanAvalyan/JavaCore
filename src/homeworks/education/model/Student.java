@@ -110,12 +110,13 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Name: " + "\033[0m" + name +
+        return "Name: " + name +
                 ", Surname: " + surname +
                 ", Age: " + age +
                 ", Phone: " + phone +
                 ", Email: " + email +
                 ", Registered date: " + DateUtil.dateToString(registeredDate) +
-                ArrayUtil.arrayToString(lessons);
+                ArrayUtil.arrayToString(lessons)
+                + "\n-----------------";
     }
 }
