@@ -27,10 +27,6 @@ public class UserStorage {
         return size != 0;
     }
 
-    public boolean userIsAdmin(User user) {
-        return user.getType().equals("admin");
-    }
-
     private void extend() {
         User[] temp = new User[users.length + 10];
         if (size >= 0) System.arraycopy(users, 0, temp, 0, size);

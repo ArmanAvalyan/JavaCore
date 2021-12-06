@@ -26,9 +26,15 @@ public class StudentLessonTest implements StudentsLessonsCommands {
         Lesson lesson4 = new Lesson("AR236", "HTML", "4 year", "Bob", 75);
         Lesson lesson5 = new Lesson("AR278", "JS", "5 month", "Mike", 13);
 
-        Student student1 = new Student("Poxos", "Poxosyan", 25, "poxos@gmail.com", "124569", DateUtil.stringToDate("15/03/2019"), new Lesson[]{lesson1, lesson4});
-        Student student2 = new Student("Petros", "Petrosyan", 15, "petros@gmail.com", "123669", DateUtil.stringToDate("02/12/2020"), new Lesson[]{lesson4, lesson1});
-        Student student3 = new Student("Martiros", "Martirosyan", 28, "martiros@gmail.com", "569", DateUtil.stringToDate("01/10/2021"), new Lesson[]{lesson1});
+        Student student1 = new Student("Poxos", "Poxosyan", 25, "poxos@gmail.com",
+                "124569", DateUtil.stringToDate("15/03/2019"),
+                new Lesson[]{lesson1, lesson4});
+        Student student2 = new Student("Petros", "Petrosyan", 15, "petros@gmail.com",
+                "123669", DateUtil.stringToDate("02/12/2020"),
+                new Lesson[]{lesson4, lesson1});
+        Student student3 = new Student("Martiros", "Martirosyan", 28, "martiros@gmail.com",
+                "569", DateUtil.stringToDate("01/10/2021"),
+                new Lesson[]{lesson1});
 
         lessonStorage.add(lesson1);
         lessonStorage.add(lesson2);
@@ -234,7 +240,8 @@ public class StudentLessonTest implements StudentsLessonsCommands {
             String[] lessonData = lessonDataStr.split(", ");
             if (lessonData.length == 4) {
                 int price = Integer.parseInt(lessonData[3]);
-                Lesson lesson = new Lesson(lessonID, lessonData[0], lessonData[1], lessonData[2], price);
+                Lesson lesson = new Lesson(lessonID, lessonData[0],
+                        lessonData[1], lessonData[2], price);
                 lessonStorage.add(lesson);
                 System.out.println("\033[0;93m" + "Thank you lesson was added" + "\033[0m");
             } else {
@@ -271,7 +278,8 @@ public class StudentLessonTest implements StudentsLessonsCommands {
             int age = Integer.parseInt(studentData[2]);
             Date registeredDate = DateUtil.stringToDate(studentData[4]);
             if (studentData.length == 5) {
-                Student student = new Student(studentData[0], studentData[1], age, email, studentData[3], registeredDate, lessons);
+                Student student = new Student(studentData[0], studentData[1], age,
+                        email, studentData[3], registeredDate, lessons);
                 studentStorage.add(student);
                 System.out.println("\033[0;93m" + "Thank you student was added" + "\033[0m");
             } else {
