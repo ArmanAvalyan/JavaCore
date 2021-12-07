@@ -20,30 +20,8 @@ public class StudentLessonTest implements StudentsLessonsCommands {
     static UserStorage userStorage = new UserStorage();
 
     public static void main(String[] args) throws ParseException {
-        Lesson lesson1 = new Lesson("AR12", "JAVA", "1 year", "John", 15);
-        Lesson lesson2 = new Lesson("AR36", "PHP", "2 year", "Smith", 55);
-        Lesson lesson3 = new Lesson("AR47", "JS", "3 year", "Mike", 19);
-        Lesson lesson4 = new Lesson("AR236", "HTML", "4 year", "Bob", 75);
-        Lesson lesson5 = new Lesson("AR278", "JS", "5 month", "Mike", 13);
 
-        Student student1 = new Student("Poxos", "Poxosyan", 25, "poxos@gmail.com",
-                "124569", DateUtil.stringToDate("15/03/2019"),
-                new Lesson[]{lesson1, lesson4});
-        Student student2 = new Student("Petros", "Petrosyan", 15, "petros@gmail.com",
-                "123669", DateUtil.stringToDate("02/12/2020"),
-                new Lesson[]{lesson4, lesson1});
-        Student student3 = new Student("Martiros", "Martirosyan", 28, "martiros@gmail.com",
-                "569", DateUtil.stringToDate("01/10/2021"),
-                new Lesson[]{lesson1});
-
-        lessonStorage.add(lesson1);
-        lessonStorage.add(lesson2);
-        lessonStorage.add(lesson3);
-        lessonStorage.add(lesson4);
-        lessonStorage.add(lesson5);
-        studentStorage.add(student1);
-        studentStorage.add(student2);
-        studentStorage.add(student3);
+        createObjects();
 
         boolean isRun = true;
         while (isRun) {
@@ -170,7 +148,6 @@ public class StudentLessonTest implements StudentsLessonsCommands {
             String password = scanner.nextLine();
             if (password.equals(user.getPassword())) {
                 System.out.println("\033[0;93m" + "You are logged in" + "\033[0m");
-                System.out.println("");
                 if (user.getType().equals("admin")) {
                     showCommandsForAdmin();
                 } else {
@@ -180,7 +157,7 @@ public class StudentLessonTest implements StudentsLessonsCommands {
                 System.out.println("\033[1;91m" + "Incorrect password" + "\033[0m");
             }
         } else {
-            System.out.println("\033[1;91m" + "There is no user with that email address" + "\033[0");
+            System.out.println("\033[1;91m" + "There is no user with that email address" + "\033[0m");
         }
     }
 
@@ -278,8 +255,8 @@ public class StudentLessonTest implements StudentsLessonsCommands {
             int age = Integer.parseInt(studentData[2]);
             Date registeredDate = DateUtil.stringToDate(studentData[4]);
             if (studentData.length == 5) {
-                Student student = new Student(studentData[0], studentData[1], age,
-                        email, studentData[3], registeredDate, lessons);
+                Student student = new Student(studentData[0], studentData[1],
+                        age, email, studentData[3], registeredDate, lessons);
                 studentStorage.add(student);
                 System.out.println("\033[0;93m" + "Thank you student was added" + "\033[0m");
             } else {
@@ -328,5 +305,39 @@ public class StudentLessonTest implements StudentsLessonsCommands {
             return true;
         }
         return false;
+    }
+
+    private static void createObjects() throws ParseException {
+        Lesson lesson1 = new Lesson("AR12", "JAVA", "1 year", "John", 15);
+        Lesson lesson2 = new Lesson("AR36", "PHP", "2 year", "Smith", 55);
+        Lesson lesson3 = new Lesson("AR47", "JS", "3 year", "Mike", 19);
+        Lesson lesson4 = new Lesson("AR236", "HTML", "4 year", "Bob", 75);
+        Lesson lesson5 = new Lesson("AR278", "JS", "5 month", "Mike", 13);
+
+        Student student1 = new Student("Poxos", "Poxosyan", 25,
+                "poxos@gmail.com", "124569", DateUtil.stringToDate("15/03/2019"),
+                new Lesson[]{lesson1, lesson4});
+        Student student2 = new Student("Petros", "Petrosyan", 15,
+                "petros@gmail.com", "123669", DateUtil.stringToDate("02/12/2020"),
+                new Lesson[]{lesson4, lesson1});
+        Student student3 = new Student("Martiros", "Martirosyan", 28,
+                "martiros@gmail.com", "569", DateUtil.stringToDate("01/10/2021"),
+                new Lesson[]{lesson1});
+
+        User user1 = new User("And", "Andyan", "and@gmail.com", "and", "admin");
+        User user2 = new User("Arm", "Armyan", "arm@gmail.com", "arm", "user");
+        User user3 = new User("Vard", "Vardyan", "vard@gmail.com", "vard", "user");
+
+        lessonStorage.add(lesson1);
+        lessonStorage.add(lesson2);
+        lessonStorage.add(lesson3);
+        lessonStorage.add(lesson4);
+        lessonStorage.add(lesson5);
+        studentStorage.add(student1);
+        studentStorage.add(student2);
+        studentStorage.add(student3);
+        userStorage.addUser(user1);
+        userStorage.addUser(user2);
+        userStorage.addUser(user3);
     }
 }

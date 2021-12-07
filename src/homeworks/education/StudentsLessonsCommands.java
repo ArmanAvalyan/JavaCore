@@ -14,7 +14,7 @@ public interface StudentsLessonsCommands {
     String REGISTER = "2";
 
     static void showMenuForAdmin() {
-        System.out.println("\033[0;92m" + "Please input " + EXIT + " to exit");
+        System.out.println("\033[0;92m" + "Please input " + EXIT + " to previous");
         System.out.println("Please input " + ADD_LESSON + " to add lesson");
         System.out.println("Please input " + ADD_STUDENT + " to add student");
         System.out.println("Please input " + PRINT_STUDENTS + " to print students");
@@ -25,7 +25,7 @@ public interface StudentsLessonsCommands {
     }
 
     static void showMenuForUser() {
-        System.out.println("\033[0;92m" + "Please input " + EXIT + " to exit");
+        System.out.println("\033[0;92m" + "Please input " + EXIT + " to previous");
         System.out.println("Please input " + ADD_LESSON + " to add lesson");
         System.out.println("Please input " + ADD_STUDENT + " to add student");
         System.out.println("Please input " + PRINT_STUDENTS + " to print students");
