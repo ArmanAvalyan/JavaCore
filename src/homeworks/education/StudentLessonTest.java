@@ -1,5 +1,6 @@
 package homeworks.education;
 
+import homeworks.education.exceptions.UserNotFoundException;
 import homeworks.education.model.Lesson;
 import homeworks.education.model.Student;
 import homeworks.education.model.User;
@@ -30,7 +31,6 @@ public class StudentLessonTest implements StudentsLessonsCommands {
             switch (command) {
                 case EXIT:
                     isRun = false;
-                    System.out.println("\033[0;93m" + "GOOD BYE!!" + "\033[0m");
                     break;
                 case LOGIN:
                     userLogin();
@@ -44,7 +44,7 @@ public class StudentLessonTest implements StudentsLessonsCommands {
         }
     }
 
-    private static void showCommandsForAdmin() throws ParseException {
+    private static void showCommandsForAdmin() {
         boolean isRun = true;
         while (isRun) {
             StudentsLessonsCommands.showMenuForAdmin();
@@ -81,7 +81,7 @@ public class StudentLessonTest implements StudentsLessonsCommands {
         }
     }
 
-    private static void showCommandsForUser() throws ParseException {
+    private static void showCommandsForUser() {
         boolean isRun = true;
         while (isRun) {
             StudentsLessonsCommands.showMenuForUser();
@@ -115,49 +115,55 @@ public class StudentLessonTest implements StudentsLessonsCommands {
     private static void userRegister() {
         System.out.print("Please input the user email: ");
         String email = scanner.nextLine();
-        if (userStorage.getUserByEmail(email) == null) {
-            System.out.print("The user is admin? \"yes\" or any key for continue: ");
-            String req = scanner.nextLine();
-            String type = "user";
-            if (req.equals("yes")) {
-                type = "admin";
-            }
-            System.out.print("Please enter the user name: ");
-            String name = scanner.nextLine();
-            System.out.print("Please enter the user surname: ");
-            String surname = scanner.nextLine();
-            System.out.print("Input the new password: ");
-            String password = scanner.nextLine();
-            User user = new User(name, surname, email, password, type);
-            userStorage.addUser(user);
-            System.out.println("\033[0;93m" + "Thank you, user was added!!" + "\033[0m");
-        } else {
-            System.out.println("\033[1;91m" + "User with this email already exists" + "\033[0m");
+        User user = new User();
+        try {
+            user = userStorage.getUserByEmail(email);
+            System.out.println("\033[1;91m" + "There is no user with that email address" + "\033[0m");
+            return;
+        } catch (UserNotFoundException e) {
+            user.setEmail(email);
         }
+        System.out.print("The user is admin? \"yes\" or any key for continue: ");
+        String req = scanner.nextLine();
+        String type = "user";
+        if (req.equals("yes")) {
+            type = "admin";
+        }
+        System.out.print("Please enter the user name: ");
+        String name = scanner.nextLine();
+        System.out.print("Please enter the user surname: ");
+        String surname = scanner.nextLine();
+        System.out.print("Input the new password: ");
+        String password = scanner.nextLine();
+        user = new User(name, surname, email, password, type);
+        userStorage.addUser(user);
+        System.out.println("\033[0;93m" + "Thank you, user was added!!" + "\033[0m");
     }
 
-    private static void userLogin() throws ParseException {
+    private static void userLogin() {
         if (usersIsEmpty()) {
             return;
         }
         System.out.print("Please input the user email: ");
         String email = scanner.nextLine();
-        User user = userStorage.getUserByEmail(email);
-        if (user != null) {
-            System.out.print("Please input the user password: ");
-            String password = scanner.nextLine();
-            if (password.equals(user.getPassword())) {
-                System.out.println("\033[0;93m" + "You are logged in" + "\033[0m");
-                if (user.getType().equals("admin")) {
-                    showCommandsForAdmin();
-                } else {
-                    showCommandsForUser();
-                }
+        User user;
+        try {
+            user = userStorage.getUserByEmail(email);
+        } catch (UserNotFoundException e) {
+            System.out.println("\033[1;91m" + "There is no user with that email address" + "\033[0m");
+            return;
+        }
+        System.out.print("Please input the user password: ");
+        String password = scanner.nextLine();
+        if (password.equals(user.getPassword())) {
+            System.out.println("\033[0;93m" + "You are logged in" + "\033[0m");
+            if (user.getType().equals("admin")) {
+                showCommandsForAdmin();
             } else {
-                System.out.println("\033[1;91m" + "Incorrect password" + "\033[0m");
+                showCommandsForUser();
             }
         } else {
-            System.out.println("\033[1;91m" + "There is no user with that email address" + "\033[0m");
+            System.out.println("\033[1;91m" + "Incorrect password" + "\033[0m");
         }
     }
 
@@ -229,7 +235,7 @@ public class StudentLessonTest implements StudentsLessonsCommands {
         }
     }
 
-    private static void addStudent() throws ParseException {
+    private static void addStudent() {
         if (lessonsIsEmpty()) {
             return;
         }
@@ -253,7 +259,13 @@ public class StudentLessonTest implements StudentsLessonsCommands {
             String studentDataStr = scanner.nextLine();
             String[] studentData = studentDataStr.split(", ");
             int age = Integer.parseInt(studentData[2]);
-            Date registeredDate = DateUtil.stringToDate(studentData[4]);
+            Date registeredDate = null;
+            try {
+                registeredDate = DateUtil.stringToDate(studentData[4]);
+            } catch (ParseException e) {
+                System.out.println("\033[1;91m" + "Please input the correct date" + "\033[0m");
+                return;
+            }
             if (studentData.length == 5) {
                 Student student = new Student(studentData[0], studentData[1],
                         age, email, studentData[3], registeredDate, lessons);
